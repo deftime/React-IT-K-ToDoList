@@ -42,8 +42,20 @@
   border-radius: 0;
 }
 
+.list-item .elem {
+  display: flex;
+  align-items: center;
+}
+
 .list-item .elem input {
   margin-right: 10px;
+}
+
+.list-item .elem button {
+  padding: 0 5px;
+  margin-left: auto;
+  border-radius: 0;
+  border: none;
 }
 
 .list-item .list-tools {

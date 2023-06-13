@@ -8,7 +8,8 @@ export type taskList = {
 
 type propsTitle = {
   title?: string,
-  list?: Array<taskList>
+  list?: Array<taskList>,
+  removeItem: Function
 }
 
 export function Todolist(props: propsTitle) {
@@ -20,14 +21,17 @@ export function Todolist(props: propsTitle) {
           <button>+</button>
         </div>
         <div className="elems">
-          {props.list?.map((elem, index)=>{
-            return (
-              <div className="elem">
-                <input type="checkbox" checked={elem.isDone}/>
-                <label htmlFor="">{elem.title}</label>
-              </div>
-            )
-          })}
+          {
+            props.list?.map((elem, index)=>{
+              return (
+                <div className="elem">
+                  <input type="checkbox" checked={elem.isDone}/>
+                  <label htmlFor="">{elem.title}</label>
+                  <button onClick={ () => {props.removeItem(elem.id, props.list)} }>X</button>
+                </div>
+              )
+            })
+          }
         </div>
         <div className="list-tools">
           <button>All</button>

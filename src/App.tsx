@@ -7,7 +7,8 @@ function App() {
   let task1: Array<taskList> = [
     { id: 1, title: 'CSS', isDone: true },
     { id: 2, title: 'JS', isDone: true },
-    { id: 3, title: 'React', isDone: false }
+    { id: 3, title: 'React', isDone: false },
+    { id: 4, title: 'Redux', isDone: false }
   ]
 
   let task2: Array<taskList> = [
@@ -22,11 +23,16 @@ function App() {
     { id: 3, title: 'Vermouth', isDone: false }
   ]
 
+  function removeItem(id: number, task: Array<taskList>) {
+    task = task.filter( elem => elem.id !== id );
+    console.log(task);
+  }
+
   return (
     <div className="App">
-      <Todolist title={'What to learn'} list={task1}/>
-      <Todolist title={'Games'} list={task2}/>
-      <Todolist title={'Drinks'} list={task3} />
+      <Todolist title={'What to learn'} list={task1} removeItem={removeItem}/>
+      <Todolist title={'Games'} list={task2} removeItem={removeItem}/>
+      <Todolist title={'Drinks'} list={task3} removeItem={removeItem}/>
     </div>
   );
 }
