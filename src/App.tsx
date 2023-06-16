@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {taskList, Todolist} from "./Components/Todolist";
 
@@ -23,16 +23,23 @@ function App() {
     { id: 3, title: 'Vermouth', isDone: false }
   ]
 
+  let state1 = useState(task1);
+  let state2 = useState(task2);
+  let state3 = useState(task3);
+
   function removeItem(id: number, task: Array<taskList>) {
-    task = task.filter( elem => elem.id !== id );
-    console.log(task);
+    let filtered = task.filter( elem => elem.id !== id );
+    state1[1](filtered);
+    state2[1](filtered);
+    state3[1](filtered);
+    console.log(filtered);
   }
 
   return (
     <div className="App">
-      <Todolist title={'What to learn'} list={task1} removeItem={removeItem}/>
-      <Todolist title={'Games'} list={task2} removeItem={removeItem}/>
-      <Todolist title={'Drinks'} list={task3} removeItem={removeItem}/>
+      <Todolist title={'What to learn'} list={state1[0]} removeItem={removeItem}/>
+      <Todolist title={'Games'} list={state2[0]} removeItem={removeItem}/>
+      <Todolist title={'Drinks'} list={state3[0]} removeItem={removeItem}/>
     </div>
   );
 }
